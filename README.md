@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LocalMind — Intelligent Document Investigator
 
-## Getting Started
+**PS ID: ALG-AI-02** | Domain: AI / ML
 
-First, run the development server:
+A browser-native document investigation platform. Upload PDFs, DOCX, CSV, HTML, text, and images. Ask natural-language questions. Get cited answers, conflict detection, and calibrated uncertainty — **without any API keys, servers, or cost**.
+
+## 🎯 What It Does
+
+1. **Ingests** multiple document formats (PDF, DOCX, CSV, HTML, TXT/MD, images via OCR)
+2. **Indexes** them locally using real sentence embeddings
+3. **Answers** natural-language questions with source citations (file · heading · page)
+4. **Detects conflicts** between documents (two independent layers: NLI + rule-based)
+5. **Communicates uncertainty** with a 4-level confidence gate instead of guessing
+
+## ✨ Key Features
+
+| Feature | Implementation |
+|---|---|
+| Multi-format ingestion | pdfjs-dist, mammoth, papaparse, Tesseract.js, DOMParser |
+| Local embeddings | `Xenova/all-MiniLM-L6-v2` (22 MB, ONNX, WASM/WebGPU) |
+| Persistent index | IndexedDB (survives page reloads) |
+| Semantic retrieval | Cosine similarity over 384-d vectors |
+| Conflict detection | `Xenova/nli-deberta-v3-xsmall` (NLI) + numeric rule-based fallback |
+| Uncertainty handling | 4-level confidence: HIGH / MEDIUM / LOW / INSUFFICIENT |
+| Source grounding | file · heading · page · similarity score |
+| Privacy | 100% client-side — documents never leave the browser |
+| Cost | $0 — no API keys, no per-query charges |
+
+## 🚀 Quick Start
 
 ```bash
+git clone https://github.com/YOUR-USERNAME/localmind.git
+cd localmind
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Open http://localhost:3000
